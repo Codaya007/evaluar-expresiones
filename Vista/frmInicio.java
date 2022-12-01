@@ -9,6 +9,8 @@ import Controlador.Pilas.Pila;
 import Controlador.Utilidades.Utilidades;
 import Modelo.Expresion;
 import javax.swing.JOptionPane;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -322,6 +324,10 @@ public class frmInicio extends javax.swing.JFrame implements Runnable {
     public javax.swing.JTextField txtExpresion;
     // End of variables declaration//GEN-END:variables
 
+    public void actualizartituloColumna() {
+        tblSimulacion.getColumnModel().getColumn(0).setHeaderValue(expresion.getExpresion());
+    }
+
     @Override
     public void run() {
         Pila pasos = new Pila(25);
@@ -339,6 +345,7 @@ public class frmInicio extends javax.swing.JFrame implements Runnable {
                 modeloTablaSimulacion.setPasos(pasos.toArray());
                 modeloTablaSimulacion.setExpresion(expresion);
                 tblSimulacion.setModel(modeloTablaSimulacion);
+                actualizartituloColumna();
                 tblSimulacion.updateUI();
                 jScrollPane1.setVisible(true);
                 restExpresion = restExpresion.substring(1, restExpresion.length());
